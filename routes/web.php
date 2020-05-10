@@ -5,6 +5,7 @@ Route::get('/', ['as' => 'root', 'uses' => 'Frontends\WebController@index']);
 //Route::get('/{uri_link}', 'Frontends\WebController@pages');
 Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
 Route::get('/{uri_link}', 'Frontends\WebController@pages');
+Route::get('/{uri_link}/{detail_content}', 'Frontends\WebController@pageContentDetails');
 Route::post('contact','Frontends\WebController@storeCommentOrTesti');
 //Route::get('{uri_link}',['as'=>'page','uses','Frontends\WebController@pages']);
 
@@ -89,6 +90,16 @@ Route::group( array('prefix' => 'admin', 'as' => 'admin.','middleware' => ['auth
         Route::get('{webmaster_id}/social-media','Backends\WebmasterController@getSocial')->name('settings.social-medias');
         Route::match(['get', 'post'],'/{webmaster_id}/social-media/create', 'Backends\WebmasterController@storeSocial')->name('settings.social-medias.store');
         Route::match(['get', 'put'],'/{webmaster_id}/social-media/{id}', 'Backends\WebmasterController@updateSocial')->name('settings.social-medias.update');
+
+        //get Phone Call Sales
+        Route::get('{webmaster_id}/phones','Backends\WebmasterController@getPhoneCall')->name('settings.phones');
+        Route::match(['get', 'post'],'/{webmaster_id}/phones/create', 'Backends\WebmasterController@storePhoneCall')->name('settings.phones.store');
+        Route::match(['get', 'put'],'/{webmaster_id}/phones/{id}', 'Backends\WebmasterController@updatePhoneCall')->name('settings.phones.update');
+
+        //get Mail Address
+        Route::get('{webmaster_id}/mails','Backends\WebmasterController@getMailAddress')->name('settings.mails');
+        Route::match(['get', 'post'],'/{webmaster_id}/mails/create', 'Backends\WebmasterController@storeMailAddress')->name('settings.mails.store');
+        Route::match(['get', 'put'],'/{webmaster_id}/mails/{id}', 'Backends\WebmasterController@updateMailAddress')->name('settings.mails.update');
 
         //get Document
         Route::get('{webmaster_id}/documents','Backends\WebmasterController@getDocument')->name('settings.documents');

@@ -16,6 +16,8 @@ use App\Models\Webmaster;
 use App\Models\WebmasterBanner;
 use App\Models\WebmasterDocument;
 use App\Models\WebmasterHour;
+use App\Models\WebmasterMail;
+use App\Models\WebmasterPhone;
 use App\Models\WebmasterSection;
 use App\Models\WebmasterSocial;
 use Harimayco\Menu\Models\MenuItems;
@@ -346,7 +348,7 @@ class WebmasterController extends Controller
                         ->addColumn('sectionCategory',function($page){
                             $category = Helper::getSiteCategoryType();
                             foreach($category as $y => $cat){
-                                if($page->section_type == $y){
+                                if($page->section_category == $y){
                                     $catName = $cat;
                                 }
                             }
@@ -672,6 +674,222 @@ class WebmasterController extends Controller
             $sosMed->social_uuid = $request->social_uuid;
             $sosMed->social_codename = $request->social_codename;
             $sosMed->save();
+            
+            return response()->json([
+                'fail' => false,
+                'redirect_url' => url('admin/settings/'.$webmaster_id)
+            ]);
+        }
+    }
+
+    //Site Phone Setting
+    public function getPhoneCall(Request $request, $webmaster_id)
+    {
+        if($request->ajax()){
+            $sosmedSetting = WebmasterPhone::where('webmaster_id',$webmaster_id)->get();
+            if(!empty($sosmedSetting))
+            {
+                return DataTables::of($sosmedSetting)
+                        ->addColumn('gabungan', function ($sosmeds) {
+                            $uri_edit = url()->current();
+                            return '<div class="media-left">
+                                        <div class="media-body">
+                                            <a href="#modalForm" data-href="'.$uri_edit.'/'.$sosmeds->id.'" data-toggle="modal" class="text-blue-700 text-semibold">'.$sosmeds->phone_name .'</a>
+                                        </div>
+                                    </div>';
+                        })
+                        ->addColumn('status',function($sosmeds){
+                            if($sosmeds->status == 0){
+                                return '<div class="text-center">
+                                            <span class="badge badge-info"> Actived </span>
+                                        </div>';
+                            }else{
+                                return '<div class="text-center">
+                                            <span class="badge badge-danger"> Suspend </span>
+                                        </div>';
+                            }
+                        })
+                        ->addColumn('action', function ($sosmeds) {
+                            return '<div class="text-center">
+                                        <a href="#" onclick="showDeleteData('.$sosmeds->id.');" data-id='.$sosmeds->id.' data-token="{{csrf_token()}}" data-toggle="tooltip" title="Delete Record"> <i class="fas fa-trash"></i></a>
+                                    </div>';
+                        })
+                        ->rawColumns(['gabungan','status','action'])
+                        ->make(true);
+            }
+        }
+        
+    }
+
+    public function storePhoneCall(Request $request, $webmaster_id)
+    {
+        if ($request->isMethod('get')){
+           
+            $setting = Webmaster::find($webmaster_id);
+            $phones = new WebmasterPhone;
+            $title = 'New Phone';
+            return view('admin.webmasters.phones.form',compact('setting','phones','title'));
+        }else {
+            $rules = [
+                'phone_name' => 'required',
+                'phone_no' => 'required',
+            ];
+
+            //dd($request->all());
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails())
+            return response()->json([
+                'fail' => true,
+                'errors' => $validator->errors()
+                ]);
+            
+            $phones = new WebmasterPhone();
+            $phones->phone_name = $request->phone_name;
+            $phones->phone_no = $request->phone_no;
+            $phones->webmaster_id = $webmaster_id;
+            $phones->save();
+            
+            return response()->json([
+                'fail' => false,
+                'redirect_url' => url('admin/settings/'.$webmaster_id)
+            ]);
+        }
+    }
+
+    public function updatePhoneCall(Request $request, $webmaster_id, $id)
+    {
+        if ($request->isMethod('get')){
+           
+            $setting = Webmaster::find($webmaster_id);
+            $phones = WebmasterPhone::find($id);
+            $title = 'Edit Phone';
+            return view('admin.webmasters.phones.form',compact('setting','phones','title'));
+        }else {
+            $rules = [
+                'phone_name' => 'required',
+                'phone_no' => 'required',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails())
+            return response()->json([
+                'fail' => true,
+                'errors' => $validator->errors()
+                ]);
+            
+            $phones = WebmasterPhone::find($id);
+            $phones->phone_name = $request->phone_name;
+            $phones->phone_no = $request->phone_no;
+            $phones->save();
+            
+            return response()->json([
+                'fail' => false,
+                'redirect_url' => url('admin/settings/'.$webmaster_id)
+            ]);
+        }
+    }
+
+    //Site Mail Setting
+    public function getMailAddress(Request $request, $webmaster_id)
+    {
+        if($request->ajax()){
+            $mailSettings = WebmasterMail::where('webmaster_id',$webmaster_id)->get();
+            if(!empty($mailSettings))
+            {
+                return DataTables::of($mailSettings)
+                        ->addColumn('gabungan', function ($mails) {
+                            $uri_edit = url()->current();
+                            return '<div class="media-left">
+                                        <div class="media-body">
+                                            <a href="#modalForm" data-href="'.$uri_edit.'/'.$mails->id.'" data-toggle="modal" class="text-blue-700 text-semibold">'.$mails->mail_name .'</a>
+                                        </div>
+                                        <div class="text-muted text-size-small"><span class="text-semibold">'.$mails->mail_address.'</span>
+                                        </div>
+                                    </div>';
+                        })
+                        ->addColumn('status',function($mails){
+                            if($mails->status == 0){
+                                return '<div class="text-center">
+                                            <span class="badge badge-info"> Actived </span>
+                                        </div>';
+                            }else{
+                                return '<div class="text-center">
+                                            <span class="badge badge-danger"> Suspend </span>
+                                        </div>';
+                            }
+                        })
+                        ->addColumn('action', function ($mails) {
+                            return '<div class="text-center">
+                                        <a href="#" onclick="showDeleteData('.$mails->id.');" data-id='.$mails->id.' data-token="{{csrf_token()}}" data-toggle="tooltip" title="Delete Record"> <i class="fas fa-trash"></i></a>
+                                    </div>';
+                        })
+                        ->rawColumns(['gabungan','status','action'])
+                        ->make(true);
+            }
+        }
+        
+    }
+
+    public function storeMailAddress(Request $request, $webmaster_id)
+    {
+        if ($request->isMethod('get')){
+           
+            $setting = Webmaster::find($webmaster_id);
+            $mails = new WebmasterMail;
+            $title = 'New Mail Address';
+            return view('admin.webmasters.mails.form',compact('setting','mails','title'));
+        }else {
+            $rules = [
+                'mail_name' => 'required',
+                'mail_address' => 'required',
+            ];
+
+            //dd($request->all());
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails())
+            return response()->json([
+                'fail' => true,
+                'errors' => $validator->errors()
+                ]);
+            
+            $mails = new WebmasterMail();
+            $mails->mail_name = $request->mail_name;
+            $mails->mail_address = $request->mail_address;
+            $mails->webmaster_id = $webmaster_id;
+            $mails->save();
+            
+            return response()->json([
+                'fail' => false,
+                'redirect_url' => url('admin/settings/'.$webmaster_id)
+            ]);
+        }
+    }
+
+    public function updateMailAddress(Request $request, $webmaster_id, $id)
+    {
+        if ($request->isMethod('get')){
+           
+            $setting = Webmaster::find($webmaster_id);
+            $mails = WebmasterMail::find($id);
+            $title = 'Edit Mail Address';
+            return view('admin.webmasters.mails.form',compact('setting','mails','title'));
+        }else {
+            $rules = [
+                'phone_name' => 'required',
+                'phone_no' => 'required',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails())
+            return response()->json([
+                'fail' => true,
+                'errors' => $validator->errors()
+                ]);
+            
+            $mails = WebmasterMail::find($id);
+            $mails->mail_name = $request->mail_name;
+            $mails->mail_address = $request->mail_address;
+            $mails->save();
             
             return response()->json([
                 'fail' => false,

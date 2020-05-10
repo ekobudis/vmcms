@@ -45,22 +45,22 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            {{ Form::label('banner_description','Description',['class'=>'control-label']) }}
-                            {{ Form::textarea('banner_description', null, ['id'=>'banner_description', 'class'=>'form-control form-control-sm textarea','placeholder'=>'Description','rows'=> '20','style'=>'height:300px;']) }}
+                            {{ Form::label('page_content','Content',['class'=>'control-label']) }}
+                            {{ Form::textarea('page_content', null, ['id'=>'page_content', 'class'=>'form-control form-control-sm textarea','placeholder'=>'Description','rows'=> '20','style'=>'height:300px;']) }}
                         </div>
                         <div class="col-sm-6">
-                            {{ Form::label('banner_abstract','Abstrat',['class'=>'control-label']) }}
-                            {{ Form::textarea('banner_abstract', null, ['id'=>'banner_abstract', 'class'=>'form-control form-control-sm textarea','placeholder'=>'Abstrat','rows'=> '20','style'=>'height:300px;']) }}
+                            {{ Form::label('page_abstract','Abstrat',['class'=>'control-label']) }}
+                            {{ Form::textarea('page_abstract', null, ['id'=>'page_abstract', 'class'=>'form-control form-control-sm textarea','placeholder'=>'Abstrat','rows'=> '20','style'=>'height:300px;']) }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            {{ Form::label('banner_meta','Meta',['class'=>'control-label']) }}
-                            {{ Form::text('banner_meta', null, ['id'=>'banner_meta', 'class'=>'form-control form-control-sm','placeholder'=>'Enter Meta']) }}
+                            {{ Form::label('page_meta','Meta',['class'=>'control-label']) }}
+                            {{ Form::text('page_meta', null, ['id'=>'page_meta', 'class'=>'form-control form-control-sm','placeholder'=>'Enter Meta']) }}
                         </div>
                         <div class="col-sm-6">
-                            {{ Form::label('banner_meta_description','Meta Description',['class'=>'control-label']) }}
-                            {{ Form::text('banner_meta_description', null, ['id'=>'banner_meta_description', 'class'=>'form-control form-control-sm','placeholder'=>'Enter Meta Description']) }}
+                            {{ Form::label('page_description','Meta Description',['class'=>'control-label']) }}
+                            {{ Form::text('page_description', null, ['id'=>'page_description', 'class'=>'form-control form-control-sm','placeholder'=>'Enter Meta Description']) }}
                         </div>
                     </div>
                 </div>

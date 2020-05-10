@@ -39,7 +39,6 @@
     @push('scripts')
     <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ asset('js/vimajs.js') }}"></script>
     <script type="text/javascript">
         var uri = "{{ url()->current() }}";
         var tgl_hariini = "{{ \Carbon\Carbon::now()->format('Y-m-d') }}";
@@ -60,8 +59,9 @@
                 order: [[0, 'asc']]
             });
         }else{
-            $('.drop').dropify();
+            //$('.drop').dropify();
         }
     </script>
+    <script src="{{ asset('js/vimajs.js') }}"></script>
     @endpush
 @stop

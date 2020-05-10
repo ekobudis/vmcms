@@ -21,13 +21,19 @@
                             <a class="nav-link" id="tabWebmasterPageTab" data-toggle="pill" href="#tabWebmasterPage" role="tab" aria-controls="tabWebmasterPage" aria-selected="false">Page Setting</a>
                         </li>
                         <li class="nav-item" id="tabWebmasterBannerTab" data-source="" data-table="banner-table">
-                            <a class="nav-link" id="tabWebmasterBannerTab" data-toggle="pill" href="#tabWebmasterBanner" role="tab" aria-controls="tabWebmasterBanner" aria-selected="false">Slide Setting</a>
+                            <a class="nav-link" id="tabWebmasterBannerTab" data-toggle="pill" href="#tabWebmasterBanner" role="tab" aria-controls="tabWebmasterBanner" aria-selected="false">Image Setting</a>
                         </li>
                         <li class="nav-item" id="tabWebmasterHoursTab" data-source="" data-table="workhour-table">
                             <a class="nav-link" id="tabWebmasterHoursTab" data-toggle="pill" href="#tabWebmasterHours" role="tab" aria-controls="tabWebmasterHours" aria-selected="false">Work Hours</a>
                         </li>
                         <li class="nav-item" id="tabWebmasterSocialsTab" data-source="" data-table="social-table">
                             <a class="nav-link" id="tabWebmasterSocialsTab" data-toggle="pill" href="#tabWebmasterSocials" role="tab" aria-controls="tabWebmasterSocials" aria-selected="false">Socials</a>
+                        </li>
+                        <li class="nav-item" id="tabWebmasterPhonesTab" data-source="" data-table="phones-table">
+                            <a class="nav-link" id="tabWebmasterPhonesTab" data-toggle="pill" href="#tabWebmasterPhones" role="tab" aria-controls="tabWebmasterPhones" aria-selected="false">Phone</a>
+                        </li>
+                        <li class="nav-item" id="tabWebmasterMailTab" data-source="" data-table="phones-table">
+                            <a class="nav-link" id="tabWebmasterMailTab" data-toggle="pill" href="#tabWebmasterMails" role="tab" aria-controls="tabWebmasterMails" aria-selected="false">Mail Address</a>
                         </li>
                         <li class="nav-item" id="tabWebmasterDocumentTab" data-source="" data-table="document-table">
                             <a class="nav-link" id="tabWebmasterDocumentTab" data-toggle="pill" href="#tabWebmasterDocument" role="tab" aria-controls="tabWebmasterDocument" aria-selected="false">Company Brochures</a>
@@ -143,7 +149,7 @@
                         <div class="tab-pane fade" id="tabWebmasterBanner" role="tabpanel" aria-labelledby="tabWebmasterBannerTab">
                             <div class="heading-elements">
                                 <div class="text-left">
-                                    <a href="#modalForm" data-href="{{ url()->current() }}/banner/create" data-toggle="modal" class="btn btn-info"><i class="icon-plus3 text-white"></i> New Banner</a>
+                                    <a href="#modalForm" data-href="{{ url()->current() }}/banner/create" data-toggle="modal" class="btn btn-info"><i class="icon-plus3 text-white"></i> New Image Size</a>
                                 </div>
                             </div>
                             <br>
@@ -191,6 +197,45 @@
                                     <thead>
                                         <tr>
                                             <th>Social Media Name</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                      </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tabWebmasterPhones" role="tabpanel" aria-labelledby="tabWebmasterPhonesTab">
+                            <div class="heading-elements">
+                                <div class="text-left">
+                                    <a href="#modalForm" data-href="{{ url()->current() }}/phones/create" data-toggle="modal" class="btn btn-info"><i class="icon-plus3 text-white"></i> New Phone</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table mb-0 table-borderless table-hover mb-0 phones-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Phone Name</th>
+                                            <th>Phone No</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                      </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tabWebmasterMails" role="tabpanel" aria-labelledby="tabWebmasterMailTab">
+                            <div class="heading-elements">
+                                <div class="text-left">
+                                    <a href="#modalForm" data-href="{{ url()->current() }}/mails/create" data-toggle="modal" class="btn btn-info"><i class="icon-plus3 text-white"></i> New Mail</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table mb-0 table-borderless table-hover mb-0 mails-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Mail Address</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -263,6 +308,16 @@
             $('#tabWebmasterSocialsTab a').on('shown.bs.tab', function(event){
                 $('.sosmed-table').DataTable().destroy();
                 getSocialMedia();
+            });
+
+            $('#tabWebmasterPhonesTab a').on('shown.bs.tab', function(event){
+                $('.phones-table').DataTable().destroy();
+                getPhone();
+            });
+
+            $('#tabWebmasterMailTab a').on('shown.bs.tab', function(event){
+                $('.mails-table').DataTable().destroy();
+                getMails();
             });
 
             $('#tabWebmasterDocumentTab a').on('shown.bs.tab', function(event){
@@ -339,6 +394,45 @@
                     serverSide: true,
                     ajax: {
                         url: uri_sosmed,
+                    },
+                    columns: [
+                            {data: 'gabungan', name: 'gabungan'},
+                            {data: 'status', name: 'status',className:'text-center'},
+                            {data: 'action', name: 'action',className:'text-center', orderable: false, searchable: false},
+                        ],
+                    order: [[0, 'asc']]
+                });
+            }
+
+            function getPhone()
+            {
+                var uri_phone = "{{ route('admin.settings.phones',['id'=>$setting->id]) }}";
+                //console.log(uri_section);
+                var tableSection = $('.phones-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: uri_phone,
+                    },
+                    columns: [
+                            {data: 'gabungan', name: 'gabungan'},
+                            {data: 'phone_no', name: 'phone_no'},
+                            {data: 'status', name: 'status',className:'text-center'},
+                            {data: 'action', name: 'action',className:'text-center', orderable: false, searchable: false},
+                        ],
+                    order: [[0, 'asc']]
+                });
+            }
+
+            function getMails()
+            {
+                var uri_mails = "{{ route('admin.settings.mails',['id'=>$setting->id]) }}";
+                //console.log(uri_section);
+                var tableSection = $('.mails-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: uri_mails,
                     },
                     columns: [
                             {data: 'gabungan', name: 'gabungan'},

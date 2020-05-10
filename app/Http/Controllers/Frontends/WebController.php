@@ -6,6 +6,8 @@ use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\Categorys;
+use App\Models\Page;
 use Harimayco\Menu\Models\Menus;
 
 class WebController extends Controller
@@ -32,10 +34,13 @@ class WebController extends Controller
         if($request->segment(1)=='contact' || $request->segment(1)=='contact-us'){
             return view('frontend.index');
         }elseif($request->segment(1)=='portofolio' || $request->segment(1)=='galery'){
+            $portofolio = Page::select(\DB::raw('id,title,slug,short_content,page_content,photo_filename'))
+                            //->where('')
+                            ->get();
             return view('frontend.index');
         }elseif($request->segment(1)=='product' || $request->segment(1)=='services' || $request->segment(1)=='product-services'){
             return view('frontend.index');
-        }elseif($request->segment(1)=='career' || $request->segment(1)=='recruitment'){
+        }elseif($request->segment(1)=='career'){
             return view('frontend.index');
         }elseif($request->segment(1)=='blog'){
             return view('frontend.index');
@@ -51,6 +56,24 @@ class WebController extends Controller
                         ->get();
 
             return view('frontend.index',compact('slides','homes'));
+        }
+    }
+
+    public function pageContentDetails(Request $request, $uri_parent, $uri_target){
+        if($uri_target != null || $uri_target != ''){
+            if($request->segment(1)=='portofolio' || $request->segment(1)=='galery'){
+                //if($request->segment(2)==)
+                $targets = Page::where('slug',$uri_target)->get()->first();
+                
+                $portofolio = Page::select(\DB::raw('id,title,slug,short_content,page_content,photo_filename'))
+                                //->where('')
+                                ->get();
+                
+            }elseif($request->segment(1)=='product' || $request->segment(1)=='services' || $request->segment(1)=='product-services'){
+                $targets = Categorys::where('slug',$uri_target)->get()->first();
+
+                dd($targets);
+            }
         }
     }
 

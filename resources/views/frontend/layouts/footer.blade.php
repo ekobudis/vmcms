@@ -13,12 +13,20 @@
                 <div class="ft-contact-bx">
                     <img src="{{ asset('images/icon2.png') }}" alt=""/>
                     <h4 class="title">Phone</h4>
-                    {{ $webmaster->phone_no }}
+                    <ul>
+                        @foreach ($phones as $phone)
+                            <li style="list-style: none;">{!! $phone->phone_name !!} : {{ $phone->phone_no }}</li>
+                        @endforeach
+                    </ul>
                 </div>
                 <div class="ft-contact-bx">
                     <img src="{{ asset('images/icon3.png') }}" alt=""/>
                     <h4 class="title">Email Contact</h4>
-                    {{ $webmaster->email }}
+                    <ul>
+                    @foreach ($mails as $mail)
+                        <li style="list-style: none;">{{ $mail->mail_name }} : <br>{{ $mail->mail_address }}</li>
+                    @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

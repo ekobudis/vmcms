@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Backends;
 
+use File;
+use Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Categorys;
 use App\Models\Page;
 use App\Models\Section;
+use App\Models\WebmasterBanner;
 use App\Models\WebmasterSection;
 use Harimayco\Menu\Models\MenuItems;
 use Yajra\DataTables\DataTables;
@@ -137,7 +141,7 @@ class PageController extends Controller
             $page->webmaster_banner_id = $request->webmaster_banner_id;
             $page->title = $request->title;
             $page->page_content = $request->page_content;
-            $page->photo_filename = $request->file_banner;
+            $page->photo_filename = $file_banner;
             $page->page_meta = $request->page_meta;
             $page->page_abstract = $request->page_abstract;
             $page->save();
@@ -176,10 +180,10 @@ class PageController extends Controller
     {
         $save_state = '';
         $title = "Category Lists";
-        $category = new Section;
+        $category = new Categorys;
         if($request->ajax()){
-            $banners = Section::select(\DB::raw('sections.id,sections.name,admin_menu_items.label,sections.status'))
-                        ->join('webmaster_sections','webmaster_sections.id','=','sections.webmaster_section_id')
+            $banners = Categorys::select(\DB::raw('categorys.id,categorys.name,admin_menu_items.label,categorys.status'))
+                        ->join('webmaster_sections','webmaster_sections.id','=','categorys.webmaster_section_id')
                         ->join('admin_menu_items','admin_menu_items.id','=','webmaster_sections.menu_item_id')
                         ->get();
 
@@ -224,12 +228,11 @@ class PageController extends Controller
         if ($request->isMethod('get')){
            
             $setting = WebmasterSection::find($page_id);
-            $category = new Section;
+            $category = new Categorys;
             $title = 'New Category';
             return view('admin.categorys.form',compact('setting','category','title'));
         }else {
             $rules = [
-                'webmaster_section_id' => 'required',
                 'name' => 'required',
             ];
 
@@ -241,9 +244,11 @@ class PageController extends Controller
                 'errors' => $validator->errors()
                 ]);
             
-            $kat = new Section();
+            $kat = new Categorys();
             $kat->name = $request->name;
-            $kat->webmaster_section_id = $request->webmaster_section_id;
+            $kat->description = $request->description;
+            $kat->icon = $request->icon;
+            $kat->webmaster_section_id = $page_id;
             $kat->save();
             
             return response()->json([
@@ -258,12 +263,11 @@ class PageController extends Controller
         if ($request->isMethod('get')){
            
             $setting = WebmasterSection::find($page_id);
-            $category = Section::find($id);
+            $category = Categorys::find($id);
             $title = 'Edit Category';
             return view('admin.categorys.form',compact('setting','category','title'));
         }else {
             $rules = [
-                'webmaster_section_id' => 'required',
                 'name' => 'required',
             ];
 
@@ -275,9 +279,11 @@ class PageController extends Controller
                 'errors' => $validator->errors()
                 ]);
             
-            $kat = Section::find($id);
+            $kat = Categorys::find($id);
             $kat->name = $request->name;
-            $kat->webmaster_section_id = $request->webmaster_section_id;
+            $kat->description = $request->description;
+            $kat->icon = $request->icon;
+            $kat->webmaster_section_id = $page_id;
             $kat->save();
             
             return response()->json([

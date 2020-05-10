@@ -15,12 +15,18 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-sm-6 col-md-6 col-xs-6">
-                        {{ Form::label('webmaster_section_id','Category Type',['class'=>'control-label']) }}
-                        {{ Form::select('webmaster_section_id' , \App\Helpers\Helper::getMenuCategory() , $category->webmaster_section_id , ['class'=>'form-control select','placeholder' => 'Select Category Type']) }}
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-xs-6">
                         {{ Form::label('name','Category Name',['class'=>'control-label']) }}
                         {{ Form::text('name',null, ['id'=>'name', 'class'=>'form-control','placeholder'=>'Entry Name'] ) }}
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-xs-6">
+                        {{ Form::label('icon','Icon Name',['class'=>'control-label']) }}
+                        {{ Form::text('icon',null, ['id'=>'icon', 'class'=>'form-control','placeholder'=>'Entry Flaticon Name'] ) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12">
+                        {{ Form::label('description','Category Description',['class'=>'control-label']) }}
+                        {{ Form::textarea('description',null, ['id'=>'description', 'class'=>'form-control','rows'=>'3','placeholder'=>'Entry Description'] ) }}
                     </div>
                 </div>
             </div>

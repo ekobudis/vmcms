@@ -1,7 +1,7 @@
-<header class="site-header mo-left header-transparent overlay header navstyle4">
-    <div class="top-bar">
+<header class="site-header mo-left header-transparent box-header navstyle5 header">
+    <div class="top-bar text-black">
         <div class="container">
-            <div class="row d-flex justify-content-between align-items-center">
+            <div class="row d-flex justify-content-between">
                 <div class="dlab-topbar-left">
                     <ul>
                         @foreach ($topMenus as $topMenu)
@@ -9,8 +9,12 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="dlab-topbar-right">
-                    <a href="" class="site-button btnhover21 radius-no">GET A QUOTE</a>						
+                <div class="dlab-topbar-right topbar-social">
+                    <ul>
+                        @foreach ($sosmed as $medsos)
+                            <li><a href="javascript:void(0);" class="site-button-link {{ ucfirst($medsos->social_name) }} hover"><i class="{{ $medsos->icon_name }}"></i></a></li>
+                        @endforeach
+                    </ul>				
                 </div>
             </div>
         </div>
@@ -31,9 +35,7 @@
                 </button>
                 <!-- extra nav -->
                 <div class="extra-nav">
-                    <div class="extra-cell">
-                        <button id="quik-search-btn" type="button" class="site-button-link"><i class="la la-search"></i></button>
-                    </div>
+                    <a href="" class="site-button radius-no">GET A QUOTE</a>
                 </div>
                 <!-- Quik search -->
                 <div class="dlab-quik-search ">

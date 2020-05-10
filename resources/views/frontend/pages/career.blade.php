@@ -92,6 +92,11 @@
                                     @endforeach
                                 </div>
                             </div>
+                            <div class="row">
+                                @if(count($careers))
+
+                                @endif
+                            </div>
                             <!-- Accordion Bg Primary END -->
                         </div>	
                     </div>	

@@ -9,7 +9,7 @@
 <script>
     jQuery(document).ready(function() {
         'use strict';
-        dz_rev_slider_12();	
+        dz_rev_slider_14();	
         $('.lazy').Lazy();
     });	/*ready*/
     

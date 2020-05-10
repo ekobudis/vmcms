@@ -31,7 +31,9 @@
                                     <span class="icon-sm text-primary"><i class="ti-email"></i></span> 
                                     E-mail
                                 </h5>
-                                <p class="m-b0">{{ $webmaster->email }}</p>
+                                @foreach ($mails as $mail)
+                                    <p class="m-b0">{{ $mail->mail_name }} : {{ $mail->mail_address }}</p>
+                                @endforeach
                             </div>
                         </div>
                     </div>

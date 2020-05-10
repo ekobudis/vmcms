@@ -3,12 +3,15 @@
 namespace App\Helpers;
 
 use App\Models\Career;
+use App\Models\Categorys;
 use App\Models\Client;
 use App\Models\Permission;
 use App\Models\Section;
 use App\Models\Webmaster;
 use App\Models\WebmasterBanner;
 use App\Models\WebmasterDocument;
+use App\Models\WebmasterMail;
+use App\Models\WebmasterPhone;
 use App\Models\WebmasterSection;
 use App\Models\WebmasterSocial;
 use Carbon\Carbon;
@@ -99,9 +102,35 @@ class Helper
         return $webmaster;
     }
 
+    public static function getPhoneCall()
+    {
+        $webmaster = WebmasterPhone::where('webmaster_id',1)->get();
+
+        return $webmaster;
+    }
+
+    public static function getMailAddress()
+    {
+        $webmaster = WebmasterMail::where('webmaster_id',1)->get();
+
+        return $webmaster;
+    }
+
     public static function getProductServiceItem()
     {
         $prodServices = Section::select('id','name')->where('status',0)->get();
+
+        return $prodServices;
+    }
+
+    public static function getCategoryServiceItem()
+    {
+        $prodServices = Categorys::select(\DB::raw('categorys.id,categorys.slug,categorys.name,categorys.description,categorys.icon,admin_menu_items.link'))
+                        ->join('webmaster_sections','webmaster_sections.id','=','categorys.webmaster_section_id')
+                        ->join('admin_menu_items','admin_menu_items.id','=','webmaster_sections.menu_item_id')
+                        ->where('categorys.status',0)
+                        ->get();
+        //$prodServices = Categorys::select('id','name','slug','description','icon')->where('status',0)->get();
 
         return $prodServices;
     }

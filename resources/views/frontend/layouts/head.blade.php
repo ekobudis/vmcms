@@ -22,7 +22,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/flaticon.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/themify-icons.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/style.min.css') }}">
-<link class="skin" rel="stylesheet" type="text/css" href="{{ asset('css/skin-7.min.css') }}">
+<link class="skin" rel="stylesheet" type="text/css" href="{{ asset('css/skin-3.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.min.css') }}">
 <!-- Google Font -->
 <style>
