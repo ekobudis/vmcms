@@ -1,16 +1,8 @@
 <!-- inner page banner -->
-<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/banner/bnr1.jpg);">
+<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/bnr1.jpg);">
     <div class="container">
         <div class="dlab-bnr-inr-entry">
-            <h1 class="text-white">Blog </h1>
-            <!-- Breadcrumb row -->
-            <div class="breadcrumb-row">
-                <ul class="list-inline">
-                    <li><a href="index.html">Home</a></li>
-                    <li>Blog </li>
-                </ul>
-            </div>
-            <!-- Breadcrumb row END -->
+            
         </div>
     </div>
 </div>

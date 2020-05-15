@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 col-xs-6">
                         {{ Form::label('permission_id','Permission',['class'=>'control-label']) }}
-                        {{ Form::select('permission_id' , \App\Helpers\Helper::getPermission() , $user->permission_id , ['class'=>'form-control select','placeholder' => 'Select Banner Type']) }}
+                        {{ Form::select('permission_id' , \App\Helpers\Helper::getPermission() , $user->permission_id , ['class'=>'form-control select','placeholder' => 'Select Permission']) }}
                     </div>
                 </div>
             </div>

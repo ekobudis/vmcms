@@ -31,7 +31,9 @@
                                     <span class="icon-sm text-primary"><i class="ti-email"></i></span> 
                                     E-mail
                                 </h5>
-                                <p class="m-b0">{{ $webmaster->email }}</p>
+                                @foreach ($mails as $mail)
+                                <p class="m-b0">{{ $mail->mail_name }} : <br>{{ $mail->mail_address }}</p>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -42,8 +44,9 @@
                                     <span class="icon-sm text-primary"><i class="ti-mobile"></i></span> 
                                     Phone Numbers
                                 </h5>
-                                <p class="m-b0">{{ $webmaster->phone_no }}</p>
-                                <p class="m-b0">{{ $webmaster->mobile_no }}</p>
+                                @foreach ($phones as $phone)
+                                <p class="m-b0"><strong>{!! $phone->phone_name !!} :</strong> <br>{{ $phone->phone_no }}</p>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -91,11 +94,11 @@
                                     @php $i=$i+1; @endphp
                                     @endforeach
                                 </div>
-                            </div>
-                            <div class="row">
-                                @if(count($careers))
-
-                                @endif
+                                <div class="sort-title clearfix text-center">
+                                    @if(count($careers))
+                                        For Temporary service all aplication must be sent to : hrd@tonscoindo.com
+                                    @endif
+                                </div>
                             </div>
                             <!-- Accordion Bg Primary END -->
                         </div>	

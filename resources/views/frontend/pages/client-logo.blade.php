@@ -10,7 +10,7 @@
                 @foreach ($clientLogo as $cltLogo)
                 <div class="item">
                     <div class="ow-client-logo">
-                        <div class="client-logo"><a href="javascript:void(0);"><img src="{{ asset('images/'.$cltLogo->logo) }}" alt=""></a></div>
+                        <div class="client-logo"><a href="javascript:void(0);"><img src="{{ asset('images/clients/'.$cltLogo->logo) }}" alt=""></a></div>
                     </div>
                 </div>    
                 @endforeach

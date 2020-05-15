@@ -1,12 +1,6 @@
 <?php
 
-//Route Front End
-Route::get('/', ['as' => 'root', 'uses' => 'Frontends\WebController@index']);
-//Route::get('/{uri_link}', 'Frontends\WebController@pages');
-Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
-Route::get('/{uri_link}', 'Frontends\WebController@pages');
-Route::get('/{uri_link}/{detail_content}', 'Frontends\WebController@pageContentDetails');
-Route::post('contact','Frontends\WebController@storeCommentOrTesti');
+
 //Route::get('{uri_link}',['as'=>'page','uses','Frontends\WebController@pages']);
 
 //Dynamic Page
@@ -17,7 +11,6 @@ Route::get('sitemap.xml', ['as' => 'sitemap', 'uses' => 'SitemapController@index
 //Route Back end
 Auth::routes(['verify' => true]);
 
-//Route::group(['prefix' => 'dashboard'], function() {
 Route::group( array('prefix' => 'admin', 'as' => 'admin.','middleware' => ['auth']), function() {    
     Route::get('login','Auth\LoginController@showLoginForm')->name('login');
     
@@ -116,3 +109,11 @@ Route::group( array('prefix' => 'admin', 'as' => 'admin.','middleware' => ['auth
         Route::match(['get', 'post'],'/{webmaster_id}/add-user', 'Backends\WebmasterController@storeUser')->name('settings.user.store');
     });
 });
+
+//Route Front End
+Route::get('/', ['as' => 'root', 'uses' => 'Frontends\WebController@index']);
+//Route::get('/{uri_link}', 'Frontends\WebController@pages');
+Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
+Route::get('/{uri_link}', 'Frontends\WebController@pages');
+Route::get('/{uri_link}/{detail_content}', 'Frontends\WebController@pageContentDetails');
+Route::post('contact','Frontends\WebController@storeCommentOrTesti');

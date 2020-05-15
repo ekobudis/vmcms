@@ -231,14 +231,18 @@
     @elseif(Request::segment(1)== 'portofolio' || Request::segment(1)== 'galery')
         @include('frontend.pages.portofolio')
     @elseif(Request::segment(1)== 'product' || Request::segment(1)== 'services' || Request::segment(1)== 'product-services')
-        @include('frontend.pages.service')
+		@if(Request::segment(2) != '')
+		@include('frontend.pages.service-detail')
+		@else
+		@include('frontend.pages.service')
+		@endif
     @elseif(Request::segment(1)== 'career' || Request::segment(1)== 'recruitment')
         @include('frontend.pages.career')
     @elseif(Request::segment(1)== 'blog')
         @include('frontend.pages.blog')
     @elseif(Request::segment(1)== 'blog' && Request::segment(2) != '')
-        @include('frontend.pages.blog')
-    @endif
+		@include('frontend.pages.blog')
+	@endif
 @stop
 
 @section('footer')

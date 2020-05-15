@@ -69,10 +69,11 @@ class WebController extends Controller
                                 //->where('')
                                 ->get();
                 
+                //
             }elseif($request->segment(1)=='product' || $request->segment(1)=='services' || $request->segment(1)=='product-services'){
                 $targets = Categorys::where('slug',$uri_target)->get()->first();
 
-                dd($targets);
+                return view('frontend.index',compact('targets'));
             }
         }
     }

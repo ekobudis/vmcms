@@ -1,5 +1,5 @@
 <!-- inner page banner -->
-<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/bg5.jpg);">
+<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/bnr1.jpg);">
     <div class="container">
         <div class="dlab-bnr-inr-entry">
         </div>
@@ -32,7 +32,7 @@
                                     E-mail
                                 </h5>
                                 @foreach ($mails as $mail)
-                                    <p class="m-b0">{{ $mail->mail_name }} : {{ $mail->mail_address }}</p>
+                                <p class="m-b0">{{ $mail->mail_name }} : <br>{{ $mail->mail_address }}</p>
                                 @endforeach
                             </div>
                         </div>
@@ -44,8 +44,9 @@
                                     <span class="icon-sm text-primary"><i class="ti-mobile"></i></span> 
                                     Phone Numbers
                                 </h5>
-                                <p class="m-b0">{{ $webmaster->phone_no }}</p>
-                                <p class="m-b0">{{ $webmaster->mobile_no }}</p>
+                                @foreach ($phones as $phone)
+                                <p class="m-b0"><strong>{!! $phone->phone_name !!} :</strong> <br>{{ $phone->phone_no }}</p>
+                                @endforeach
                             </div>
                         </div>
                     </div>

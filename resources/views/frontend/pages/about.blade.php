@@ -1,5 +1,5 @@
 <!-- inner page banner -->
-<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/banner/bnr3.jpg);">
+<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/bnr1.jpg);">
     <div class="container">
         <div class="dlab-bnr-inr-entry">
             <h1 class="text-white">About us 2</h1>

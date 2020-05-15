@@ -47,7 +47,7 @@
                 <!-- main nav -->
                 <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
                     <div class="logo-header d-md-block d-lg-none">
-                        <a href="index.html"><img src="{{ asset('images/logotonsco.png') }}" alt=""></a>
+                        <a href=""><img src="{{ asset('images/logotonsco.png') }}" alt=""></a>
                     </div>
                     <ul class="nav navbar-nav">
                         @if($publicMenus)

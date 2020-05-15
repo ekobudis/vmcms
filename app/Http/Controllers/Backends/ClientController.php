@@ -44,7 +44,7 @@ class ClientController extends Controller
                     })
                     ->addColumn('preview',function($client){
                         if($client->logo != ''){
-                            $imgView = asset('images/'.$client->logo);
+                            $imgView = asset('images/clients/'.$client->logo);
                             return '<div class="text-center">
                                         <img src="'.$imgView.'" width="130px" height="85px">
                                     </div>';
@@ -106,7 +106,7 @@ class ClientController extends Controller
     
                 $file_logo = time(). rand(1111, 9999) . '.' .$image_logo->getClientOriginalExtension();
     
-                $save_Path = public_path('images/'.$file_logo);
+                $save_Path = public_path('images/clients/'.$file_logo);
     
                 //Image::make($image->getRealPath())->resize(300, 236)->save($save_Path);
                 Image::make($image_logo->getRealPath())
@@ -178,7 +178,7 @@ class ClientController extends Controller
     
                 $file_logo = time(). rand(1111, 9999) . '.' .$image_logo->getClientOriginalExtension();
     
-                $save_Path = public_path('images/'.$file_logo);
+                $save_Path = public_path('images/clients/'.$file_logo);
     
                 //Image::make($image->getRealPath())->resize(300, 236)->save($save_Path);
                 Image::make($image_logo->getRealPath())

@@ -1,5 +1,5 @@
 <!-- contact area -->
-<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/bg5.jpg);">
+<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/bnr1.jpg);">
     <div class="container">
         <div class="dlab-bnr-inr-entry">
         </div>
@@ -40,9 +40,6 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 m-b30">
                             <div class="dlab-box">
-                                <div class="dlab-media">
-                                    <a href="javascript:void(0);"></a>
-                                </div>
                                 <div class="dlab-info m-t30 ">
                                     <h4 class="dlab-title m-t0"><a href="javascript:void(0);">The Initial Planning </a></h4>
                                     <p>There are many variations of passages of Lorem Ipsum typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>

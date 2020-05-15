@@ -1,5 +1,5 @@
 <!-- Portfolio  -->
-<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/bg5.jpg);">
+<div class="dlab-bnr-inr overlay-black-middle bg-pt" style="background-image:url(images/bnr1.jpg);">
     <div class="container">
         <div class="dlab-bnr-inr-entry">
         </div>
@@ -13,30 +13,12 @@
                     <input type="radio">
                     <a href="javascript:void(0);" class="site-button-secondry button-sm radius-xl"><span>All</span></a> 
                 </li>
-                <li data-filter="web" class="btn">
+                @foreach ($categorys as $itemServ)
+                <li data-filter="{{ $itemServ->slug }}" class="btn">
                     <input type="radio">
-                    <a href="javascript:void(0);" class="site-button-secondry button-sm radius-xl"><span>Habitat</span></a> 
-                </li>
-                <li data-filter="advertising" class="btn">
-                    <input type="radio">
-                    <a href="javascript:void(0);" class="site-button-secondry button-sm radius-xl"><span>Pigging</span></a> 
-                </li>
-                <li data-filter="branding" class="btn">
-                    <input type="radio">
-                    <a href="javascript:void(0);" class="site-button-secondry button-sm radius-xl"><span>Hot Tap</span></a> 
-                </li>
-                <li data-filter="design" class="btn">
-                    <input type="radio">
-                    <a href="javascript:void(0);" class="site-button-secondry button-sm radius-xl"><span>Cold Cutting</span></a> 
-                </li>
-                <li data-filter="photography" class="btn">
-                    <input type="radio">
-                    <a href="javascript:void(0);" class="site-button-secondry button-sm radius-xl"><span>Underwater</span></a> 
-                </li>
-                <li data-filter="pump" class="btn">
-                    <input type="radio">
-                    <a href="javascript:void(0);" class="site-button-secondry button-sm radius-xl"><span>Pump</span></a> 
-                </li>
+                    <a href="javascript:void(0);" class="site-button-secondry button-sm radius-xl"><span>{{ $itemServ->name }}</span></a> 
+                </li> 
+                @endforeach
             </ul>
         </div>
         <div class="clearfix" id="lightgallery">
