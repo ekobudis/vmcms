@@ -1,31 +1,46 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  <!-- Left navbar links -->
-  <ul class="navbar-nav">
-      <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-  </ul>
-
-  <!-- SEARCH FORM -->
-  @include('admin.layouts.search')
-
-  <!-- Right navbar links -->
-  <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-comments"></i>
-              <span class="badge badge-danger navbar-badge">3</span>
-          </a>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-bell"></i>
-              <span class="badge badge-warning navbar-badge">15</span>
-          </a>
-      </li>
-      <li class="nav-item">
-      </li>
-  </ul>
-</nav>
+<header class="page_header header_darkgrey">
+    <div class="widget widget_search">
+        <form method="get" class="searchform form-inline" action="./">
+            <div class="form-group">
+                <label class="screen-reader-text" for="widget-search-header">Search for:</label>
+                <input id="widget-search-header" type="text" value="" name="search" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="theme_button color1">Search</button>
+        </form>
+    </div>
+    <div class="pull-right big-header-buttons">
+        <ul class="inline-dropdown inline-block">
+            <li class="dropdown header-notes-dropdown">
+                <a class="header-button" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                    <i class="fa fa-bell-o grey"></i>
+                    <span class="header-button-text">Messages</span>
+                    <span class="header-dropdown-number">
+                        12
+                    </span>
+                </a>
+            </li>
+            <li class="dropdown header-notes-dropdown">
+                <a class="header-button" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                    <i class="fa fa-envelope-o grey"></i>
+                    <span class="header-button-text">Inbox</span>
+                    <span class="header-dropdown-number">
+                        8
+                    </span>
+                </a>
+            </li>
+            <li class="dropdown header-notes-dropdown">
+                <a class="header-button" data-target="#" href="./" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                    <i class="fa fa-calendar-o grey"></i>
+                    <span class="header-button-text">User</span>
+                </a>
+            </li>
+            <li class="dropdown visible-xs-inline-block">
+                <a href="#" class="search_modal_button header-button">
+                    <i class="fa fa-search grey"></i>
+                    <span class="header-button-text">Search</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- eof .header_right_buttons -->
+</header>

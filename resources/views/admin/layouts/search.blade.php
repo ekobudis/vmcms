@@ -1,10 +1,23 @@
-<form class="form-inline ml-3">
-    <div class="input-group input-group-sm">
-      <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-      <div class="input-group-append">
-        <button class="btn btn-navbar" type="submit">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
+<section class="ls with_bottom_border">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ol class="breadcrumb darklinks">
+                    <li><a href="#">Dashboard</a></li>
+                    <li class="active">Posts</li>
+                </ol>
+            </div>
+            <!-- .col-* -->
+            <div class="col-md-6 text-md-right">
+                <span class="dashboard-daterangepicker">
+                    <i class="fa fa-calendar"></i>
+                    <span></span>
+                    <i class="caret"></i>
+                </span>
+            </div>
+            <!-- .col-* -->
+        </div>
+        <!-- .row -->
     </div>
-</form>
+    <!-- .container -->
+</section>

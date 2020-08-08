@@ -1,28 +1,20 @@
-<!-- jQuery -->
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('adminlte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- ChartJS -->
-<script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
-<!-- daterangepicker -->
-<script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-<!-- Summernote -->
-<script src="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
-<!-- overlayScrollbars -->
-<script src="{{ asset('adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('adminlte/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('adminlte/js/demo.js') }}"></script>
+<!-- template init -->
+<script src="{{ asset('comfort/js/compressed.js') }}"></script>
+<script src="{{ asset('comfort/js/main.js') }}"></script>
+<!-- events calendar -->
+<script src="{{ asset('comfort/js/moment.min.js') }}"></script>
+<script src="{{ asset('comfort/js/fullcalendar.min.js') }}"></script>
+<!-- range picker -->
+<script src="{{ asset('comfort/js/daterangepicker.js') }}"></script>
+<!-- charts -->
+<script src="{{ asset('comfort/js/Chart.bundle.min.js') }}"></script>
+<!-- vector map -->
+<script src="{{ asset('comfort/js/jquery-jvectormap-2.0.3.min.js') }}"></script>
+<script src="{{ asset('comfort/js/jquery-jvectormap-world-mill.js') }}"></script>
+<!-- small charts -->
+<script src="{{ asset('comfort/js/jquery.sparkline.min.js') }}"></script>
+<!-- dashboard init -->
+<script src="{{ asset('comfort/js/admin.js') }}"></script>
 <script src="{{ asset('js/dropify.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">

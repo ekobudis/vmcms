@@ -3,31 +3,27 @@
 <head>
     @yield('head')
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="admin">
+    <div class="preloader">
+		<div class="preloader_image"></div>
+    </div>
+    <div id="canvas">
+		<div id="box_wrapper">
+            
+        </div>
+    </div>
     <div class="wrapper">
         @include('admin.layouts.header-nav')
         
         @include('admin.layouts.sidebar')
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">{{ $title }}</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+
+        @include('admin.layouts.search')
+        <section class="ls section_padding_top_50 section_padding_bottom_50 columns_padding_10">
+            <div class="container-fluid">
+                @yield('content')
             </div>
-            <!-- End Page Content Header -->
-            <section class="content">
-                <div class="container-fluid">
-                    @yield('content')
-                </div>
-            </section>
-        </div>
+        </section>
+
         @include('admin.layouts.footer')
     </div>
     <!-- End Wrapper -->

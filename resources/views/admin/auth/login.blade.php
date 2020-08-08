@@ -1,61 +1,79 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-            <form action="{{ route('login') }}" method="post">
-                @csrf
-                <div class="input-group mb-3">
-                    <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+    <section class="ls section_padding_top_100 section_padding_bottom_100 section_full_height">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 to_animate">
+                    <div class="with_border with_padding">
+                        <h4 class="text-center">
+                            Sign In to Your Account
+                        </h4>
+                        <hr class="bottommargin_30">
+                        <div class="wrap-forms">
+                            <form action="{{ route('login') }}" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group has-placeholder">
+                                            <label for="email">Email address</label>
+                                            <i class="grey fa fa-envelope-o"></i>
+                                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        </div>
+                                    </div>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group has-placeholder">
+                                            <label for="password">Password</label>
+                                            <i class="grey fa fa-pencil-square-o"></i>
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                        </div>
+                                    </div>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            <label for="remember_me_checkbox">Rememrber Me</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="theme_button block_button color1">Log In</button>
+                            </form>
+                        </div>
+                        <div class="darklinks text-center topmargin_20">
+                            <a role="button" data-toggle="collapse" href="#signin-resend-password" aria-expanded="false" aria-controls="signin-resend-password">Forgot your password?</a>
+                        </div>
+                        <div class="collapse form-inline-button" id="signin-resend-password">
+                            <form class="form-inline topmargin_20">
+                                <div class="form-group">
+                                    <label class="sr-only">Enter your e-mail</label>
+                                    <input type="email" class="form-control" placeholder="E-mail">
+                                </div>
+                                <button type="submit" class="theme_button with_icon">
+                                    <i class="fa fa-share"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <!-- .with_border -->
+                    <p class="divider_20 text-center">Not registered? <a href="admin_signup.html">Create an account</a>.<br>or go <a href="./">Home</a></p>
                 </div>
-                <div class="input-group mb-3">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror                    
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                            <label for="remember">
-                                Remember Me
-                            </label>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </form>
-            <p class="mb-1">
-            @if (Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">
-                    {{ __('Forgot My Password?') }}
-                </a>
-            @endif
-            </p>
+                <!-- .col-* -->
+            </div>
+            <!-- .row -->
         </div>
-        <!-- /.login-card-body -->
-    </div>
+        <!-- .container -->
+    </section>
 @endsection
